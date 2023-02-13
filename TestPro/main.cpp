@@ -349,6 +349,9 @@ void mergeSort(vector<int>& arr, int l, int r) { // sort the range [l, r) in arr
 
 
 //----------------快速排序-------------
+//选择 最左边为左标记，最右边为右标记且为基准，同向遍历，左标记大于基准，右标记小于基准时，交换两个值，左标与下标相等时，将其与基准交换，
+//(此时基准左边为小于基准的，右边为大于基准的)
+//然后递归的对左右两边完成快速排序。
 int partition(vector<int> &arr,int low,int high){
 
 #if 0
