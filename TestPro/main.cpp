@@ -266,15 +266,16 @@ void bubbleSort(vector<int> &nums) {
 
 //双指针 外层从左到右遍历  内层从排好序位置从右到左遍历
 void insertionSort(vector<int> &nums) {
-//    for (int i = 0; i < nums.size(); ++i) {
-//        for (int j = i; j > 0; --j) {
-//            if (nums[j] < nums[j - 1]) {
-//                swap(nums[i], nums[j]); //因为初始 j == i 则
-//            } else {
-//                break;
-//            }
-//        }
-//    }
+    for (int i = 1; i < nums.size(); ++i) {
+        for (int j = i; j > 0 ; --j) {
+            if(nums.at(j) < nums.at(j -1)){
+                //因为初始 j == i , i是未进行排序的,从i开始逆向比较 若小于前一个则进行交换，实现插入
+                swap(nums.at(j),nums.at(j-1));
+            }else{
+                break;
+            }
+        }
+    }
 }
 
 #if 0
@@ -403,7 +404,8 @@ void quickSort(vector<int> &arr,int low,int high){
 
 int main(int argc, char **argv) {
     vector<int> nums1 = {3, 5, 8, 1, 2, 9, 4, 7,6};
-    quickSort(nums1,0,8);
+    insertionSort(nums1);
+//    quickSort(nums1,0,8);
     qDebug() << "-----------";
     for_each(nums1.begin(),nums1.end(),prin);
 
