@@ -1,0 +1,22 @@
+# 获取指定路径下所有文件夹（只查找一层文件夹）
+MACRO(GetSubDirList subList dirPath)
+    FILE(GLOB subDirs LIST_DIRECTORIES true ${dirPath}/*)
+    FOREACH(dirName ${subDirs})
+        IF(IS_DIRECTORY ${dirName})
+            LIST(APPEND dirList ${dirName})
+        ENDIF()
+    ENDFOREACH()
+    SET(${subList} ${dirList})
+ENDMACRO()
+
+
+MACRO(GetSubDirList_Recurse subList dirPath)
+    FILE(GLOB_RECURSE subDirs LIST_DIRECTORIES true ${dirPath}/*)
+    FOREACH(subDirPath ${subDirs})
+        #message(STATUS "dirName: " ${subDirPath})
+        IF(IS_DIRECTORY ${subDirPath})
+            LIST(APPEND dirList ${subDirPath})
+        ENDIF()
+    ENDFOREACH()
+    SET(${subList} ${dirList})
+ENDMACRO()
