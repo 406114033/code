@@ -1,5 +1,7 @@
 #include <iostream>
+
 using namespace std;
+
 #include <cstdlib>
 #include <string>
 #include <vector>
@@ -237,6 +239,7 @@ int findDuplicate(vector<int> &nums) {
 }
 
 //----冒泡排序-------比较相邻元素
+//实现可以用双层循环, 外层用来控制内层循环中最值上浮的位置, 内层用来进行两两比较和交换位置.
 void bubbleSort(vector<int> &nums) {
     int max = nums.size() - 1;
     for (int i = 0; i < max; ++i) {
@@ -245,6 +248,17 @@ void bubbleSort(vector<int> &nums) {
                 int t = nums[j];
                 nums[j] = nums[j + 1];
                 nums[j + 1] = t;
+            }
+        }
+    }
+}
+
+void bubleSort(vector<int> &nums) {
+    int max = nums.size() - 1;
+    for (int i = 0; i < max; ++i) {
+        for (int j = 0; j < max - i; ++j) {
+            if (nums[j] > nums[j + 1]) {
+                swap(nums[j], nums[j + 1]);
             }
         }
     }
@@ -263,15 +277,40 @@ void bubbleSort(vector<int> &nums) {
 ////    }
 //}
 
+void selectionSort(vector<int> &nums) {
+    for (int i = 0; i < nums.size(); ++i) {
+        int minIndex = i;
+        for (int j = minIndex + 1; j < nums.size(); ++j) {
+            if (nums[j] < nums[minIndex]) {
+                minIndex = j;
+            }
+        }
+        swap(nums[i], nums[minIndex]);
+    }
+}
+
 
 //双指针 外层从左到右遍历  内层从排好序位置从右到左遍历
 void insertionSort(vector<int> &nums) {
     for (int i = 1; i < nums.size(); ++i) {
-        for (int j = i; j > 0 ; --j) {
-            if(nums.at(j) < nums.at(j -1)){
+        for (int j = i; j > 0; --j) {
+            if (nums.at(j) < nums.at(j - 1)) {
                 //因为初始 j == i , i是未进行排序的,从i开始逆向比较 若小于前一个则进行交换，实现插入
-                swap(nums.at(j),nums.at(j-1));
-            }else{
+                swap(nums.at(j), nums.at(j - 1));
+            } else {
+                break;
+            }
+        }
+    }
+}
+
+
+void insertionSort1(vector<int> &nums) {
+    for (int i = 0; i < nums.size(); ++i) {
+        for (int j = i; j < nums.size(); ++j) {
+            if (nums.at(j) < nums.at(j - 1)) {
+                swap(nums[j], nums[j - 1]);
+            } else {
                 break;
             }
         }
@@ -310,12 +349,12 @@ void mergeSort(vector<int> &nums, int l, int mid, int r) {
 }
 #endif
 
-void merge(vector<int>& arr, int l, int mid, int r) {
+void merge(vector<int> &arr, int l, int mid, int r) {
     qDebug() << " l =  " << l << " mid = " << mid << " r = " << r;
     int index = 0;
     int ptrL = l;
     int ptrR = mid;
-    static vector<int>tempary;
+    static vector<int> tempary;
     if (arr.size() > tempary.size()) {
         tempary.resize(arr.size());
     }
@@ -334,16 +373,17 @@ void merge(vector<int>& arr, int l, int mid, int r) {
     }
     copy(tempary.begin(), tempary.begin() + index, arr.begin() + l);
 }
-void mergeSort(vector<int>& arr, int l, int r) { // sort the range [l, r) in arr
+
+void mergeSort(vector<int> &arr, int l, int r) { // sort the range [l, r) in arr
     if (r - l <= 1) {
         return;
     }
     int mid = (l + r) / 2;
-    qDebug() << " mergeSort 111111111" <<  " l = " << l << " mid = " << mid << " r = " << r;
+    qDebug() << " mergeSort 111111111" << " l = " << l << " mid = " << mid << " r = " << r;
     mergeSort(arr, l, mid);
-    qDebug() << " mergeSort 222222222"<<  " l = " << l << " mid = " << mid << " r = " << r;
+    qDebug() << " mergeSort 222222222" << " l = " << l << " mid = " << mid << " r = " << r;
     mergeSort(arr, mid, r);
-    qDebug() << " merge 3333"<<  " l = " << l << " mid = " << mid << " r = " << r;
+    qDebug() << " merge 3333" << " l = " << l << " mid = " << mid << " r = " << r;
     merge(arr, l, mid, r);
 }
 
@@ -352,7 +392,7 @@ void mergeSort(vector<int>& arr, int l, int r) { // sort the range [l, r) in arr
 //选择 最左边为左标记，最右边为右标记且为基准，同向遍历，左标记大于基准，右标记小于基准时，交换两个值，左标与下标相等时，将其与基准交换，
 //(此时基准左边为小于基准的，右边为大于基准的)
 //然后递归的对左右两边完成快速排序。
-int partition(vector<int> &arr,int low,int high){
+int partition(vector<int> &arr, int low, int high) {
 
 #if 0
     int ptrR = high;
@@ -390,27 +430,91 @@ int partition(vector<int> &arr,int low,int high){
 #endif
 }
 
-void quickSort(vector<int> &arr,int low,int high){
-    if(low < high){
-        int pivot = partition(arr,low,high);
-        quickSort(arr,low,pivot-1);
-        quickSort(arr,pivot+1,high);
+void quickSort(vector<int> &arr, int low, int high) {
+    if (low < high) {
+        int pivot = partition(arr, low, high);
+        quickSort(arr, low, pivot - 1);
+        quickSort(arr, pivot + 1, high);
         qDebug() << " pivot = " << pivot;
         qDebug() << "-----------";
-        for_each(arr.begin(),arr.end(),prin);
+        for_each(arr.begin(), arr.end(), prin);
     }
 }
 
 
 //-----------------
+int partition1(vector<int> &arr, int low, int high) {
+    int temp = arr[low];
+    while (low < high) {
+        while (low < high && arr[high] >= temp) {
+            high--;
+        }
+        qDebug() << " =======high = " << high << " low = " << low;
+        arr[low] = arr[high];
+        while (low < high && arr[low] <= temp) {
+            low++;
+        }
+        qDebug() << " high = " << high << " low = " << low;
+        arr[high] = arr[low];
+    }
+    arr[low] = temp;
+    return low;
+}
 
+void quickSort1(vector<int> &arr, int low, int high) {
+    if (low < high) {
+        int privot = partition1(arr, low, high);
+        quickSort1(arr, low, privot - 1);
+        quickSort1(arr, privot + 1, high);
+    }
+}
+
+class Person {
+public:
+    Person() noexcept {
+        qDebug() << "Person+++++++";
+        mNum += n;
+        n++;
+    }
+
+    ~Person() {
+        qDebug() << "Person------";
+    }
+
+    void add() {
+        qDebug() << "add";
+    }
+
+    int n = 1;
+    int mNum;
+};
+
+
+static int io_interrupt_cb(void *ctx) {
+    // 这个函数写AVPacket时一直在被调用，不要把磁盘容量检查放在这里
+    return 0;
+}
 
 int main(int argc, char **argv) {
-    vector<int> nums1 = {3, 5, 8, 1, 2, 9, 4, 7,6};
-    insertionSort(nums1);
-//    quickSort(nums1,0,8);
+    std::unique_ptr<Person> ptrU(new Person);
+    auto pppp = ptrU.release();
+    pppp->add();
+    std::shared_ptr<Person> ptr1(new Person[5]{}, [](Person *person) {
+        person->mNum = 2;
+        person->add();
+    });
+    std::shared_ptr<Person> ptr2(ptr1);
+    qDebug() << ptr1.use_count() << endl;
+    ptr2.reset();
+    qDebug() << ptr1.use_count() << endl;
+
+    vector<int> nums1 = {3, 5, 8, 1, 2, 9, 4, 7, 6};
+//    insertionSort(nums1);
+    quickSort1(nums1, 0, 8);
     qDebug() << "-----------";
-    for_each(nums1.begin(),nums1.end(),prin);
+    for_each(nums1.begin(), nums1.end(), prin);
+    qDebug() << "-----------";
+    qDebug() << "-----------";
 
 //    int mid = 0 + (8 - 0) / 2;
 //    mergeSort(nums1, 0,8);
@@ -425,14 +529,16 @@ int main(int argc, char **argv) {
     int bbbbb = 0;
 //    sortColors(nums1);
 //    merge(nums1, 0, nums2, nums2.size());
+#if 0   //ffmpegDemo
     const AVOutputFormat *ofmt = NULL;
     AVFormatContext *ifmt_ctx = NULL, *ofmt_ctx = NULL;
-    AVPacket *pkt = NULL;
+    AVPacket *pkt, *newPkt = NULL;
     const char *in_filename, *out_filename;
     int ret, i;
     int stream_index = 0;
     int *stream_mapping = NULL;
     int stream_mapping_size = 0;
+    AVFrame *frame = NULL;
 
 //    if (argc < 3) {
 //        printf("usage: %s input output\n"
@@ -443,14 +549,15 @@ int main(int argc, char **argv) {
 //    }
 
     in_filename = "E:\\MP4\\big.mp4";
-    out_filename = "E:\\big.mp4";
+    out_filename = "E:\\MP4\\test-big-ffmpeg.avi";
 
     pkt = av_packet_alloc();
+    newPkt = av_packet_alloc();
     if (!pkt) {
         fprintf(stderr, "Could not allocate AVPacket\n");
         return 1;
     }
-
+//demuxer
     if ((ret = avformat_open_input(&ifmt_ctx, in_filename, 0, 0)) < 0) {
         fprintf(stderr, "Could not open input file '%s'", in_filename);
         goto end;
@@ -463,6 +570,8 @@ int main(int argc, char **argv) {
 
     av_dump_format(ifmt_ctx, 0, in_filename, 0);
 
+
+//muxer
     avformat_alloc_output_context2(&ofmt_ctx, NULL, NULL, out_filename);
     if (!ofmt_ctx) {
         fprintf(stderr, "Could not create output context\n");
@@ -471,7 +580,7 @@ int main(int argc, char **argv) {
     }
 
     stream_mapping_size = ifmt_ctx->nb_streams;
-    stream_mapping = static_cast<int *>(av_calloc(stream_mapping_size, sizeof(*stream_mapping)));
+    stream_mapping = (int *) (av_calloc(stream_mapping_size, sizeof(*stream_mapping)));
     if (!stream_mapping) {
         ret = AVERROR(ENOMEM);
         goto end;
@@ -479,35 +588,89 @@ int main(int argc, char **argv) {
 
     ofmt = ofmt_ctx->oformat;
 
-    for (i = 0; i < ifmt_ctx->nb_streams; i++) {
-        AVStream *out_stream;
-        AVStream *in_stream = ifmt_ctx->streams[i];
-        AVCodecParameters *in_codecpar = in_stream->codecpar;
+//addStream
+    AVStream *out_stream;
+    AVStream *in_stream = ifmt_ctx->streams[0];
+    AVCodecParameters *in_codecpar = in_stream->codecpar;
 
-        if (in_codecpar->codec_type != AVMEDIA_TYPE_AUDIO &&
-            in_codecpar->codec_type != AVMEDIA_TYPE_VIDEO &&
-            in_codecpar->codec_type != AVMEDIA_TYPE_SUBTITLE) {
-            stream_mapping[i] = -1;
-            continue;
-        }
-
-        stream_mapping[i] = stream_index++;
-
-        out_stream = avformat_new_stream(ofmt_ctx, NULL);
-        if (!out_stream) {
-            fprintf(stderr, "Failed allocating output stream\n");
-            ret = AVERROR_UNKNOWN;
-            goto end;
-        }
-
-        ret = avcodec_parameters_copy(out_stream->codecpar, in_codecpar);
-        if (ret < 0) {
-            fprintf(stderr, "Failed to copy codec parameters\n");
-            goto end;
-        }
-        out_stream->codecpar->codec_tag = 0;
+    if (in_codecpar->codec_type != AVMEDIA_TYPE_AUDIO &&
+        in_codecpar->codec_type != AVMEDIA_TYPE_VIDEO &&
+        in_codecpar->codec_type != AVMEDIA_TYPE_SUBTITLE) {
+        stream_mapping[0] = -1;
+        return 0;
     }
+
+    stream_mapping[0] = stream_index++;
+//Decoder
+    const AVCodec *decodeCodec = NULL;
+    if (!decodeCodec) {
+        decodeCodec = avcodec_find_decoder(in_codecpar->codec_id);
+    }
+    if (!decodeCodec) {
+        goto end;
+    }
+
+    AVCodecContext *decodeCodecCtx = avcodec_alloc_context3(decodeCodec);
+    if (!decodeCodecCtx) {
+        goto end;
+    }
+
+    int result = avcodec_parameters_to_context(decodeCodecCtx, in_codecpar);
+
+    result = avcodec_open2(decodeCodecCtx, NULL, NULL);
+
+
+//encoder
+    const AVCodec *encodeCodec = NULL;
+    encodeCodec = avcodec_find_encoder(AV_CODEC_ID_H264);
+    if (!encodeCodec) {
+        goto end;
+    }
+
+    AVCodecContext *encodeCodecCtx = avcodec_alloc_context3(encodeCodec);
+    encodeCodecCtx->bit_rate = in_codecpar->bit_rate;
+//encodeCodecCtx->sample_rate = decodeCodecCtx->sample_rate;
+//encodeCodecCtx->sample_fmt = decodeCodecCtx->sample_fmt;
+//encodeCodecCtx->channels = decodeCodecCtx->channels;
+    encodeCodecCtx->width = in_codecpar->width;
+    encodeCodecCtx->height = in_codecpar->height;
+    encodeCodecCtx->pix_fmt = (AVPixelFormat)in_codecpar->format;
+    encodeCodecCtx->time_base = av_make_q(in_stream->avg_frame_rate.den,in_stream->avg_frame_rate.num);
+    encodeCodecCtx->framerate = in_stream->avg_frame_rate;
+//encodeCodecCtx->channel_layout = decodeCodecCtx->channel_layout;
+    encodeCodecCtx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
+    encodeCodecCtx->trellis = 1;
+
+    result = avcodec_open2(encodeCodecCtx, encodeCodec, NULL);
+    if (result) {
+        goto end;
+    }
+
+
+    out_stream = avformat_new_stream(ofmt_ctx, NULL);
+    if (!out_stream) {
+        fprintf(stderr, "Failed allocating output stream\n");
+        ret = AVERROR_UNKNOWN;
+        goto end;
+    }
+
+    out_stream->id = ofmt_ctx->nb_streams - 1;
+    ret = avcodec_parameters_from_context(out_stream->codecpar, encodeCodecCtx);
+    if (ret < 0) {
+        fprintf(stderr, "Failed to copy codec parameters\n");
+        goto end;
+    }
+//out_stream->time_base = encodeCodecCtx->time_base;
+    out_stream->codecpar->codec_tag = 0;
+    out_stream->avg_frame_rate = in_stream->avg_frame_rate;
+    uint8_t *data = av_stream_new_side_data(out_stream, AV_PKT_DATA_NEW_EXTRADATA, 34);
+
     av_dump_format(ofmt_ctx, 0, out_filename, 1);
+
+
+//writeHead
+
+//    const AVIOInterruptCB int_cb = {io_interrupt_cb,this};
 
     if (!(ofmt->flags & AVFMT_NOFILE)) {
         ret = avio_open(&ofmt_ctx->pb, out_filename, AVIO_FLAG_WRITE);
@@ -523,46 +686,48 @@ int main(int argc, char **argv) {
         goto end;
     }
 
+    frame = av_frame_alloc();
     while (1) {
-        AVStream *in_stream, *out_stream;
-
         ret = av_read_frame(ifmt_ctx, pkt);
         if (ret < 0)
             break;
 
-        in_stream = ifmt_ctx->streams[pkt->stream_index];
-        if (pkt->stream_index >= stream_mapping_size ||
-            stream_mapping[pkt->stream_index] < 0) {
-            av_packet_unref(pkt);
+        ret = avcodec_send_packet(decodeCodecCtx, pkt);
+        if (ret < 0 && AVERROR_EOF != ret) {
             continue;
         }
+        ret = avcodec_receive_frame(decodeCodecCtx, frame);
 
-        pkt->stream_index = stream_mapping[pkt->stream_index];
-        out_stream = ofmt_ctx->streams[pkt->stream_index];
-        log_packet(ifmt_ctx, pkt, "in");
-
-        /* copy packet */
-        av_packet_rescale_ts(pkt, in_stream->time_base, out_stream->time_base);
-        pkt->pos = -1;
-        log_packet(ofmt_ctx, pkt, "out");
-
-        if (pkt->stream_index == 0) {
-            qDebug() << "writePacket " << pkt->stream_index << " pts: " << pkt->pts;
+        if (frame) {
+            avcodec_send_frame(encodeCodecCtx, frame);
         }
 
-        ret = av_interleaved_write_frame(ofmt_ctx, pkt);
+        ret = avcodec_receive_packet(encodeCodecCtx, newPkt);
+
+        /* copy packet */
+        av_packet_rescale_ts(newPkt, in_stream->time_base, out_stream->time_base);
+        newPkt->pos = -1;
+        //        log_packet(ofmt_ctx, pkt, "out");
+
+        if (newPkt->stream_index == 0) {
+            //qDebug() << "writePacket " << pkt->stream_index << " pts: " << pkt->pts;
+        }
+
+        ret = av_interleaved_write_frame(ofmt_ctx, newPkt);
         /* pkt is now blank (av_interleaved_write_frame() takes ownership of
          * its contents and resets pkt), so that no unreferencing is necessary.
          * This would be different if one used av_write_frame(). */
         if (ret < 0) {
             fprintf(stderr, "Error muxing packet\n");
-            break;
+            continue;
         }
     }
 
     av_write_trailer(ofmt_ctx);
     end:
     av_packet_free(&pkt);
+    av_packet_free(&newPkt);
+    av_frame_free(&frame);
 
     avformat_close_input(&ifmt_ctx);
 
@@ -574,9 +739,10 @@ int main(int argc, char **argv) {
     av_freep(&stream_mapping);
 
     if (ret < 0 && ret != AVERROR_EOF) {
-//        fprintf(stderr, "Error occurred: %s\n", av_err2str(ret));
+        //        fprintf(stderr, "Error occurred: %s\n", av_err2str(ret));
         return 1;
     }
+#endif
 
     return 0;
 }
