@@ -7,11 +7,12 @@ file(GLOB_RECURSE testSourceFiles Test/*.cpp)
 
 list(REMOVE_ITEM sourceFiles ${testSourceFiles})
 
-add_executable(${targetName} main.cpp)
+add_executable(${targetName} ${sourceFiles})
 
-target_link_libraries(${targetName} PUBLIC Qt5::Core FFMPEG_avcodec FFMPEG_avfilter
+target_link_libraries(${targetName} PUBLIC FFMPEG_avcodec FFMPEG_avfilter
         FFMPEG_avformat FFMPEG_avutil FFMPEG_postproc
-        FFMPEG_swresample FFMPEG_swscale)
+        FFMPEG_swresample FFMPEG_swscale PLog
+        PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 
 target_sources(${targetName} PRIVATE ${sourceFiles}
         ${CMAKE_CURRENT_SOURCE_DIR}/FFmpegHeaders.hpp)

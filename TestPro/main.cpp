@@ -9,6 +9,8 @@ using namespace std;
 #include <libavutil/timestamp.h>
 #include <QDebug>
 #include <algorithm>
+#include "Logger.hpp"
+#include "dbg.h"
 
 static void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt, const char *tag) {
     AVRational *time_base = &fmt_ctx->streams[pkt->stream_index]->time_base;
@@ -501,6 +503,7 @@ void typeConverterCast() {
 }
 
 int main(int argc, char **argv) {
+    TaiShan::initLogger("d:/","newTestDemo");
     std::unique_ptr<Person> ptrU(new Person);
     auto pppp = ptrU.release();
     pppp->add();
@@ -509,9 +512,10 @@ int main(int argc, char **argv) {
         person->add();
     });
     std::shared_ptr<Person> ptr2(ptr1);
-    qDebug() << ptr1.use_count() << endl;
+    LOG_I << ptr1.use_count();
+//    dbg(ptr1.use_count());
     ptr2.reset();
-    qDebug() << ptr1.use_count() << endl;
+    LOG_I << ptr1.use_count() << endl;
 
     vector<int> nums1 = {3, 5, 8, 1, 2, 9, 4, 7, 6};
 //    insertionSort(nums1);
