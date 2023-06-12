@@ -1,7 +1,1 @@
-if (WIN32)
-    add_subdirectory(5.1-win64-gpl-shared)
-elseif (APPLE)
-    add_subdirectory(4.4.3-macos64-shared)
-elseif(UNIX)
-    add_subdirectory(4.4.1_linux_shared)
-endif ()
+add_subdirectory(ffmpeg)

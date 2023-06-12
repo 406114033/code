@@ -495,6 +495,11 @@ static int io_interrupt_cb(void *ctx) {
     return 0;
 }
 
+//强制类型转换
+void typeConverterCast() {
+
+}
+
 int main(int argc, char **argv) {
     std::unique_ptr<Person> ptrU(new Person);
     auto pppp = ptrU.release();
