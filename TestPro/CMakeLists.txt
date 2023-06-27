@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 file(GLOB_RECURSE sourceFiles *.cpp)
 file(GLOB_RECURSE testSourceFiles Test/*.cpp)
 
-list(REMOVE_ITEM sourceFiles ${testSourceFiles})
+list(REMOVE_ITEM ${sourceFiles} ${testSourceFiles})
 
 add_executable(${targetName} ${sourceFiles})
 

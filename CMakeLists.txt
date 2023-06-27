@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.19)
 project(newTestDemo LANGUAGES CXX C)
 #--------------------------------------------------------------------------------
 include(CMake/ConfigQt.cmake)
