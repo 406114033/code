@@ -497,13 +497,108 @@ static int io_interrupt_cb(void *ctx) {
     return 0;
 }
 
-//强制类型转换
-void typeConverterCast() {
+class CBase{
+public:
+    virtual int test(){
+        return 0;
+    }
 
+private:
+    int mDddd = 6;
+};
+
+class CDerived : public CBase{
+public:
+    int test() override{
+        return 1;
+    }
+};
+
+void typeConverterCast() {
+    int a = 3;
+    int b = 10;
+    auto d = b / a;
+    auto c = static_cast<char>(b / a);
+    LOG_I << " c = " << to_string(c);
+    int *intP = &b;
+    void *voidP = static_cast<void *>(intP);
+//    LOG_I << " *voidP = " << *voidP;
+    long *pDouble = static_cast<long *>(voidP);
+    LOG_I << " pDouble = " << *pDouble;
+
+    CDerived * tcDerived = new CDerived;
+    CBase * tcBase = static_cast<CBase *>(tcDerived);
+
+    CDerived *tcDerived1 = static_cast<CDerived*>(tcBase);  //不会报错 但不安全
+    CDerived *tcDerived2 = dynamic_cast<CDerived*>(tcBase);
+
+    CDerived i_CBase;
+    CBase &r_CBase = i_CBase;
+    try{
+        CDerived &r_CDerived = dynamic_cast<CDerived &>(r_CBase);
+    }catch (std::bad_cast &e){
+        LOG_I << " 类型转换失败";
+    }
+
+
+    int value = 100;
+    const int *cPi = &value;
+//    *cPi = 200;
+    int *pi = const_cast<int *>(cPi);
+    LOG_I << "=======" << *pi;
+    *pi = 200;
+    LOG_I << "=======" << *pi;
+    const int *cpi2 = const_cast<const int *>(pi);
+//    cpi2 = 300;
+    const int value1 = 500;
+    const int &cValue = value1;
+    int &rValue = const_cast<int &>(cValue);
+    rValue = 1000;
+
+    const int &cValue2 = const_cast<const int &>(rValue);
+
+    int num = 100;
+    int *ppNum = &num;
+    int numValue = reinterpret_cast<int>(ppNum);
+    int *pNum = reinterpret_cast<int *>(num);
+    int numm = reinterpret_cast<int>(pNum);
+
+
+
+//    float * pInt = static_cast<float *>(pDouble);  error
+    LOG_I << " end ";
+}
+
+class MyClass {
+public:
+    void constttt() const;
+
+    void constMemberFunction() const;
+
+private:
+    mutable int constantVariable = 0;
+//    int constantVariable = 0;
+    int a = 0;
+};
+
+void MyClass::constttt() const{
+    constantVariable = 20;
+}
+
+void MyClass::constMemberFunction() const {
+    const_cast<int&>(constantVariable) = 42; // 修改 const 成员变量的值
+    LOG_I << "constandVariable = " << constantVariable;
+    constttt();
+    LOG_I << "constandVariable = " << constantVariable;
 }
 
 int main(int argc, char **argv) {
     TaiShan::initLogger("d:/","newTestDemo");
+    float outData[3084] = {};
+    auto size = sizeof(outData);
+    MyClass claObj;
+    claObj.constMemberFunction();
+    typeConverterCast();
     std::unique_ptr<Person> ptrU(new Person);
     auto pppp = ptrU.release();
     pppp->add();
