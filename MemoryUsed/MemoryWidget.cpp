@@ -8,6 +8,7 @@
 #include <QPen>
 #include <QLinearGradient>
 #include "SysInfo.hpp"
+#include "QDebug"
 
 using namespace QtCharts;
 
@@ -48,6 +49,7 @@ MemoryWidget::MemoryWidget(QWidget *parent) :
 
 void MemoryWidget::updateSeries()
 {
+    qDebug() << "MemoryWidget::updateSeries()";
     //刷线内存使用率
     double memoryUsed = SysInfo::instance().memoryUsed();
     mSeries->append(mPointPositionX++, memoryUsed);

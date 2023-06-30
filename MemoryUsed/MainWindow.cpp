@@ -9,12 +9,22 @@
 
 MainWindow::MainWindow()
 {
-    QVBoxLayout layout;
-    layout.setParent(this);
-    layout.addWidget(&mCpuWidget);
-    layout.addWidget(&mMemoryWidget);
+    setCentralWidget(new QWidget());
+    auto mainLayout = new QHBoxLayout(centralWidget());
+    mCpuWidget = new CpuWidget(this);
+    mMemoryWidget = new MemoryWidget(this);
+    mainLayout->addWidget(mCpuWidget);
+    mainLayout->addWidget(mMemoryWidget);
     SysInfo::instance().init();
+
 }
 MainWindow::~MainWindow()
-{
+{   if(mCpuWidget){
+        delete mCpuWidget;
+        mCpuWidget = nullptr;
+    }
+    if(mMemoryWidget){
+        delete mMemoryWidget;
+        mMemoryWidget = nullptr;
+    }
 }

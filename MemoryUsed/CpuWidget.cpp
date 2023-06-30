@@ -3,7 +3,7 @@
 //
 
 #include "CpuWidget.hpp"
-
+#include "QDebug"
 #include "SysInfo.hpp"
 using namespace QtCharts;
 CpuWidget::CpuWidget(QWidget* parent) :

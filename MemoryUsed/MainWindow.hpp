@@ -16,8 +16,8 @@ public:
     explicit MainWindow();
     ~MainWindow();
 private:
-    CpuWidget mCpuWidget;
-    MemoryWidget mMemoryWidget;
+    CpuWidget* mCpuWidget = nullptr;
+    MemoryWidget* mMemoryWidget = nullptr;
 };
 
 
