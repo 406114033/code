@@ -11,6 +11,8 @@ using namespace std;
 #include <algorithm>
 #include "Logger.hpp"
 #include "dbg.h"
+#include "QApplication"
+#include "MainWindow.hpp"
 
 static void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt, const char *tag) {
     AVRational *time_base = &fmt_ctx->streams[pkt->stream_index]->time_base;
@@ -593,6 +595,13 @@ void MyClass::constMemberFunction() const {
 }
 
 int main(int argc, char **argv) {
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.setFixedSize(720,640);
+    w.show();
+
+    return a.exec();
+#if 0
     TaiShan::initLogger("d:/","newTestDemo");
     float outData[3084] = {};
     auto size = sizeof(outData);
@@ -631,9 +640,12 @@ int main(int argc, char **argv) {
     vector<int> nums2 = {1};
 //    moveZeroes(nums1);
     int bbbbb = 0;
+#endif
 //    sortColors(nums1);
 //    merge(nums1, 0, nums2, nums2.size());
-#if 0   //ffmpegDemo
+
+
+#if 0   //-------------ffmpegDemo-----------
     const AVOutputFormat *ofmt = NULL;
     AVFormatContext *ifmt_ctx = NULL, *ofmt_ctx = NULL;
     AVPacket *pkt, *newPkt = NULL;
