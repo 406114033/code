@@ -482,7 +482,7 @@ public:
     }
 
     ~Person() {
-        qDebug() << "Person------";
+        qDebug() << "~Person------";
     }
 
     void add() {
@@ -571,6 +571,7 @@ void typeConverterCast() {
     LOG_I << " end ";
 }
 
+#if 0 //-----------mutable关键字----------
 class MyClass {
 public:
     void constttt() const;
@@ -593,6 +594,43 @@ void MyClass::constMemberFunction() const {
     constttt();
     LOG_I << "constandVariable = " << constantVariable;
 }
+#endif
+
+#if 0  //----------智能指针自实现-----------
+template <typename T>
+class SmartPointer{
+public:
+    SmartPointer(T *obj) : mObj(obj){}
+    ~SmartPointer(){
+        if(mObj == nullptr) return;
+        delete mObj;
+        mObj = nullptr;
+    }
+    T* get(){
+        return mObj;
+    }
+    T* operator-> (){
+        return mObj;
+    }
+
+private:
+    T *mObj;
+};
+
+
+int main(int argc, char **argv) {
+
+    cout << "1" << endl;
+    {
+        SmartPointer<Person> p(new Person());
+        p.get()->add();
+        p->add();
+    }
+    cout << "2" << endl;
+
+    return 0;
+}
+#endif
 
 int main(int argc, char **argv) {
     QApplication a(argc, argv);
