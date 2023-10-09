@@ -704,9 +704,9 @@
     <li><a id="toc-fieldhint" href="#fieldhint">11.87 fieldhint</a></li>
     <li><a id="toc-fieldmatch" href="#fieldmatch">11.88 fieldmatch</a>
     <ul class="no-bullet">
-      <li><a id="toc-p_002fc_002fn_002fu_002fb-meaning-1" href="#p_002fc_002fn_002fu_002fb-meaning-1">11.88.1 p/c/n/u/b meaning</a>
+      <li><a id="toc-p_002fc_002fn_002fu_002fb-meaning-1" href="#p_002fc_002fn_002fu_002fb-meaning-1">11.88.1 p/c/mN/u/b meaning</a>
       <ul class="no-bullet">
-        <li><a id="toc-p_002fc_002fn" href="#p_002fc_002fn">11.88.1.1 p/c/n</a></li>
+        <li><a id="toc-p_002fc_002fn" href="#p_002fc_002fn">11.88.1.1 p/c/mN</a></li>
         <li><a id="toc-u_002fb" href="#u_002fb">11.88.1.2 u/b</a></li>
       </ul></li>
       <li><a id="toc-Examples-72" href="#Examples-72">11.88.2 Examples</a></li>
@@ -1790,7 +1790,7 @@ next filter in the filtergraph.
 <dd><p>timestamp expressed in seconds, NAN if the input timestamp is unknown
 </p>
 </dd>
-<dt><span>&lsquo;<samp>n</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>mN</samp>&rsquo;</span></dt>
 <dd><p>sequential number of the input frame, starting from 0
 </p>
 </dd>
@@ -2319,7 +2319,7 @@ quality of interpolated samples using neighbour good samples.
 Default value is <code>10</code>. Higher values make clip detection less aggressive.
 </p>
 </dd>
-<dt><span><samp>hsize, n</samp></span></dt>
+<dt><span><samp>hsize, mN</samp></span></dt>
 <dd><p>Set size of histogram used to detect clips. Allowed range is from <code>100</code> to <code>9999</code>.
 Default value is <code>1000</code>. Higher values make clip detection less aggressive.
 </p>
@@ -2742,7 +2742,7 @@ use by default the same input channel layout.
 <dd><p>channel number of the current expression
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>number of the evaluated sample, starting from 0
 </p>
 </dd>
@@ -3055,7 +3055,7 @@ With this enabled, noise floor is automatically adjusted.
 <dd><p>Pass noise filtered out.
 </p>
 </dd>
-<dt><span><samp>noise, n</samp></span></dt>
+<dt><span><samp>noise, mN</samp></span></dt>
 <dd><p>Pass only noise.
 </p>
 <p>Default value is <var>output</var>.
@@ -3731,7 +3731,7 @@ Default is <code>average</code>. Can be <code>average</code> or <code>maximum</c
 </dl>
 
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize filter coefficients, by default is enabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -3895,7 +3895,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -4267,7 +4267,7 @@ Default value is 6 milliseconds.
 <dd><p>Pass noise filtered out.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Pass only noise.
 </p>
 <p>Default value is <var>o</var>.
@@ -4327,7 +4327,7 @@ relate to producing the least mean square of the error signal (difference betwee
 <dd><p>Pass filtered samples.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Pass difference between desired and filtered samples.
 </p>
 <p>Default value is <var>o</var>.
@@ -4713,7 +4713,7 @@ signals its end.
 <p>The filter accepts the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>nb_out_samples, n</samp></span></dt>
+<dt><span><samp>nb_out_samples, mN</samp></span></dt>
 <dd><p>Set the number of frames per each output audio frame. The number is
 intended as the number of samples <em>per each channel</em>.
 Default value is 1024.
@@ -4729,7 +4729,7 @@ previous ones. Default value is 1.
 <p>For example, to set the number of per-frame samples to 1234 and
 disable padding for the last frame, use:
 </p><div class="example">
-<pre class="example">asetnsamples=n=1234:p=0
+<pre class="example">asetnsamples=mN=1234:p=0
 </pre></div>
 
 <a name="asetrate"></a>
@@ -4758,7 +4758,7 @@ The input audio is not modified.
 <p>The following values are shown in the output:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The (sequential) number of the input frame, starting from 0.
 </p>
 </dd>
@@ -5563,7 +5563,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -5685,7 +5685,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -5819,7 +5819,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -5931,7 +5931,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -6656,7 +6656,7 @@ Note, however, that the maximum local gain factor is still restricted by the
 frame&rsquo;s highest magnitude sample, in order to prevent clipping.
 </p>
 </dd>
-<dt><span><samp>coupling, n</samp></span></dt>
+<dt><span><samp>coupling, mN</samp></span></dt>
 <dd><p>Enable channels coupling. By default is enabled.
 By default, the Dynamic Audio Normalizer will amplify all channels by the same
 amount. This means the same gain factor will be applied to all channels, i.e.
@@ -6820,7 +6820,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -7438,7 +7438,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -7596,7 +7596,7 @@ their valid ranges are printed.
 zero inputs.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per channel per each output frame, default
 is 1024. Only used if plugin have zero inputs.
 </p>
@@ -7837,7 +7837,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -7946,7 +7946,7 @@ their valid ranges are printed.
 zero inputs.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per channel per each output frame, default
 is 1024. Only used if plugin have zero inputs.
 </p>
@@ -8432,7 +8432,7 @@ suffixed keys are used, and <code>X</code> corresponds to the channel number.
 <p>The filter accepts the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>noise, n</samp></span></dt>
+<dt><span><samp>noise, mN</samp></span></dt>
 <dd><p>Set noise tolerance. Can be specified in dB (in case &quot;dB&quot; is appended to the
 specified value) or amplitude ratio. Default is -60dB, or 0.001.
 </p>
@@ -8454,7 +8454,7 @@ for the accepted syntax.
 <ul>
 <li> Detect 5 seconds of silence with -50dB noise tolerance:
 <div class="example">
-<pre class="example">silencedetect=n=-50dB:d=5
+<pre class="example">silencedetect=mN=-50dB:d=5
 </pre></div>
 
 </li><li> Complete example with <code>ffmpeg</code> to detect silence with 0.0001 noise
@@ -9301,7 +9301,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -9414,7 +9414,7 @@ Range is between 0 and 1.
 <dd><p>Specify which channels to filter, by default all available are filtered.
 </p>
 </dd>
-<dt><span><samp>normalize, n</samp></span></dt>
+<dt><span><samp>normalize, mN</samp></span></dt>
 <dd><p>Normalize biquad coefficients, by default is disabled.
 Enabling it will normalize magnitude response at DC to 0dB.
 </p>
@@ -9652,7 +9652,7 @@ when the &lsquo;<samp>volume</samp>&rsquo; command is sent
 <p>The volume expression can contain the following parameters.
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>frame number (starting at zero)
 </p></dd>
 <dt><span><samp>nb_channels</samp></span></dt>
@@ -9875,7 +9875,7 @@ complete frame.
 supposed to be generated forever.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per channel per each output frame,
 default to 1024.
 </p>
@@ -9888,7 +9888,7 @@ default to 1024.
 <p>Each expression in <var>exprs</var> can contain the following constants:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>number of the evaluated sample, starting from 0
 </p>
 </dd>
@@ -9977,7 +9977,7 @@ Values are separated by white spaces.
 <dd><p>Set sample rate, default is 44100.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set number of samples per each frame. Default is 1024.
 </p>
 </dd>
@@ -10012,7 +10012,7 @@ channel layout values.
 <dd><p>Specifies the sample rate, and defaults to 44100.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per requested frames.
 </p>
 </dd>
@@ -10061,7 +10061,7 @@ supposed to be generated forever.
 immediately. Default value is 0.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the maximum number of samples per frame. Default value is 512.
 </p>
 </dd>
@@ -10140,7 +10140,7 @@ blue, violet and velvet. Default color is white.
 <dd><p>Specify a value used to seed the PRNG.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per each output frame, default is 1024.
 </p></dd>
 </dl>
@@ -10177,7 +10177,7 @@ The process is often written as a multiplication by i (or j), the imaginary unit
 <dd><p>Set length of FIR filter, default is 22051.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set number of samples per each frame.
 </p>
 </dd>
@@ -10200,7 +10200,7 @@ The process is often written as a multiplication by i (or j), the imaginary unit
 <dd><p>Set sample rate, default is 44100.
 </p>
 </dd>
-<dt><span><samp>nb_samples, n</samp></span></dt>
+<dt><span><samp>nb_samples, mN</samp></span></dt>
 <dd><p>Set number of samples per each frame. Default is 1024.
 </p>
 </dd>
@@ -10273,7 +10273,7 @@ the carrier frequency. Default is 0, meaning the beep is disabled.
 <p>The expression can contain the following constants:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The (sequential) number of the output audio frame, starting from 0.
 </p>
 </dd>
@@ -10314,7 +10314,7 @@ sine=frequency=220:beep_factor=4:duration=5
 </li><li> Generate a 1 kHz sine wave following <code>1602,1601,1602,1601,1602</code> NTSC
 pattern:
 <div class="example">
-<pre class="example">sine=1000:samples_per_frame='st(0,mod(n,5)); 1602-not(not(eq(ld(0),1)+eq(ld(0),3)))'
+<pre class="example">sine=1000:samples_per_frame='st(0,mod(mN,5)); 1602-not(not(eq(ld(0),1)+eq(ld(0),3)))'
 </pre></div>
 </li></ul>
 
@@ -13021,7 +13021,7 @@ each new frame.
 pixel format &quot;yuv422p&quot; <var>hsub</var> is 2 and <var>vsub</var> is 1.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The number of the input frame, starting from 0.
 </p>
 </dd>
@@ -13103,7 +13103,7 @@ the top and bottom borders
 
 </li><li> Apply trembling effect:
 <div class="example">
-<pre class="example">crop=in_w/2:in_h/2:(in_w-out_w)/2+((in_w-out_w)/2)*sin(n/10):(in_h-out_h)/2 +((in_h-out_h)/2)*sin(n/7)
+<pre class="example">crop=in_w/2:in_h/2:(in_w-out_w)/2+((in_w-out_w)/2)*sin(mN/10):(in_h-out_h)/2 +((in_h-out_h)/2)*sin(mN/7)
 </pre></div>
 
 </li><li> Apply erratic camera effect depending on timestamp:
@@ -13113,7 +13113,7 @@ the top and bottom borders
 
 </li><li> Set x depending on the value of y:
 <div class="example">
-<pre class="example">crop=in_w/2:in_h/2:y:10+10*sin(n/10)
+<pre class="example">crop=in_w/2:in_h/2:y:10+10*sin(mN/10)
 </pre></div>
 </li></ul>
 
@@ -13477,8 +13477,8 @@ multiplier value for the coefficient.
 variable.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
-<dd><p>Set the <var>blocksize</var> using the number of bits. <code>1&lt;&lt;<var>n</var></code> defines the
+<dt><span><samp>mN</samp></span></dt>
+<dd><p>Set the <var>blocksize</var> using the number of bits. <code>1&lt;&lt;<var>mN</var></code> defines the
 <var>blocksize</var>, which is the width and height of the processed blocks.
 </p>
 <p>The default value is <var>3</var> (8x8) and can be raised to <var>4</var> for a
@@ -13503,7 +13503,7 @@ better de-noising.
 
 <p>Violent denoise using a block size of <code>16x16</code>:
 </p><div class="example">
-<pre class="example">dctdnoiz=15:n=4
+<pre class="example">dctdnoiz=15:mN=4
 </pre></div>
 
 <a name="deband"></a>
@@ -14922,7 +14922,7 @@ values. The default value for both is &quot;0&quot;.
 </p>
 </dd>
 <dt><span><samp>start_number</samp></span></dt>
-<dd><p>The starting frame number for the n/frame_num variable. The default value
+<dd><p>The starting frame number for the mN/frame_num variable. The default value
 is &quot;0&quot;.
 </p>
 </dd>
@@ -15045,7 +15045,7 @@ contained in the rendered text, it is equivalent to <var>ascent</var> -
 contained in the rendered text
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>the number of input frame, starting from 0
 </p>
 </dd>
@@ -15178,7 +15178,7 @@ printed by running <code>ffprobe -show_frames</code>.
 the drawtext filter are also available.
 </p>
 </dd>
-<dt><span><code>n, frame_num</code></span></dt>
+<dt><span><code>mN, frame_num</code></span></dt>
 <dd><p>The frame number, starting from 0.
 </p>
 </dd>
@@ -15422,7 +15422,7 @@ of distinct output colors.
 represents the number of distinct output colors. Default value is 256.
 </p>
 </dd>
-<dt><span><samp>nb_steps, n</samp></span></dt>
+<dt><span><samp>nb_steps, mN</samp></span></dt>
 <dd><p>Set the maximum number of iterations to apply for computing the optimal
 mapping. The higher the value the better the result and the higher the
 computation time. Default value is 1.
@@ -15468,7 +15468,7 @@ between neighbour histogram values.
 <p>It accepts the following option:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Set the scaling dimension: <code>2</code> for <code>2xEPX</code>, <code>3</code> for
 <code>3xEPX</code>.
 Default is <code>3</code>.
@@ -15548,7 +15548,7 @@ when a command is processed
 
 <p>The expressions accept the following parameters:
 </p><dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>frame count of the input frame starting from 0
 </p>
 </dd>
@@ -15837,7 +15837,7 @@ Default is <code>in</code>.
 effect at. Default is 0.
 </p>
 </dd>
-<dt><span><samp>nb_frames, n</samp></span></dt>
+<dt><span><samp>nb_frames, mN</samp></span></dt>
 <dd><p>The number of frames that the fade effect lasts. At the end of the
 fade-in effect, the output video will have the same intensity as the input video.
 At the end of the fade-out transition, the output video will be filled with the
@@ -15881,7 +15881,7 @@ If both duration and nb_frames are specified, duration is used. Default is 0
 
 <p>The command above is equivalent to:
 </p><div class="example">
-<pre class="example">fade=t=in:s=0:n=30
+<pre class="example">fade=t=in:s=0:mN=30
 </pre></div>
 
 </li><li> Fade out the last 45 frames of a 200-frame video:
@@ -16231,7 +16231,7 @@ all somewhere in between <samp>pc</samp> and <samp>pcn_ub</samp> in terms of ris
 jerkiness and creating duplicate frames versus finding good matches in sections
 with bad edits, orphaned fields, blended fields, etc.
 </p>
-<p>More details about p/c/n/u/b are available in <a href="#p_002fc_002fn_002fu_002fb-meaning">p/c/n/u/b meaning</a> section.
+<p>More details about p/c/mN/u/b are available in <a href="#p_002fc_002fn_002fu_002fb-meaning">p/c/mN/u/b meaning</a> section.
 </p>
 <p>Available values are:
 </p>
@@ -16240,21 +16240,21 @@ with bad edits, orphaned fields, blended fields, etc.
 <dd><p>2-way matching (p/c)
 </p></dd>
 <dt><span>&lsquo;<samp>pc_n</samp>&rsquo;</span></dt>
-<dd><p>2-way matching, and trying 3rd match if still combed (p/c + n)
+<dd><p>2-way matching, and trying 3rd match if still combed (p/c + mN)
 </p></dd>
 <dt><span>&lsquo;<samp>pc_u</samp>&rsquo;</span></dt>
 <dd><p>2-way matching, and trying 3rd match (same order) if still combed (p/c + u)
 </p></dd>
 <dt><span>&lsquo;<samp>pc_n_ub</samp>&rsquo;</span></dt>
 <dd><p>2-way matching, trying 3rd match if still combed, and trying 4th/5th matches if
-still combed (p/c + n + u/b)
+still combed (p/c + mN + u/b)
 </p></dd>
 <dt><span>&lsquo;<samp>pcn</samp>&rsquo;</span></dt>
-<dd><p>3-way matching (p/c/n)
+<dd><p>3-way matching (p/c/mN)
 </p></dd>
 <dt><span>&lsquo;<samp>pcn_ub</samp>&rsquo;</span></dt>
 <dd><p>3-way matching, and trying 4th/5th matches if all 3 of the original matches are
-detected as combed (p/c/n + u/b)
+detected as combed (p/c/mN + u/b)
 </p></dd>
 </dl>
 
@@ -16359,10 +16359,10 @@ Available values are:
 <dd><p>No forced calculation.
 </p></dd>
 <dt><span>&lsquo;<samp>pcn</samp>&rsquo;</span></dt>
-<dd><p>Force p/c/n calculations.
+<dd><p>Force p/c/mN calculations.
 </p></dd>
 <dt><span>&lsquo;<samp>pcnub</samp>&rsquo;</span></dt>
-<dd><p>Force p/c/n/u/b calculations.
+<dd><p>Force p/c/mN/u/b calculations.
 </p></dd>
 </dl>
 
@@ -16418,10 +16418,10 @@ as <samp>MI</samp> in TFM/VFM vocabulary.
 </dl>
 
 <span id="p_002fc_002fn_002fu_002fb-meaning"></span><a name="p_002fc_002fn_002fu_002fb-meaning-1"></a>
-<h4 class="subsection">11.88.1 p/c/n/u/b meaning<span class="pull-right"><a class="anchor hidden-xs" href="#p_002fc_002fn_002fu_002fb-meaning-1" aria-hidden="true">#</a> <a class="anchor hidden-xs"href="#toc-p_002fc_002fn_002fu_002fb-meaning-1" aria-hidden="true">TOC</a></span></h4>
+<h4 class="subsection">11.88.1 p/c/mN/u/b meaning<span class="pull-right"><a class="anchor hidden-xs" href="#p_002fc_002fn_002fu_002fb-meaning-1" aria-hidden="true">#</a> <a class="anchor hidden-xs"href="#toc-p_002fc_002fn_002fu_002fb-meaning-1" aria-hidden="true">TOC</a></span></h4>
 
 <a name="p_002fc_002fn"></a>
-<h4 class="subsubsection">11.88.1.1 p/c/n<span class="pull-right"><a class="anchor hidden-xs" href="#p_002fc_002fn" aria-hidden="true">#</a> <a class="anchor hidden-xs"href="#toc-p_002fc_002fn" aria-hidden="true">TOC</a></span></h4>
+<h4 class="subsubsection">11.88.1.1 p/c/mN<span class="pull-right"><a class="anchor hidden-xs" href="#p_002fc_002fn" aria-hidden="true">#</a> <a class="anchor hidden-xs"href="#toc-p_002fc_002fn" aria-hidden="true">TOC</a></span></h4>
 
 <p>We assume the following telecined stream:
 </p>
@@ -16441,7 +16441,7 @@ first two frames are progressive, the 3rd and 4th are combed, and so on.
                 T     1 2 2 3 4
                 B     1 2 3 4 4   &lt;-- matching reference
 
-Matches:              c c n n c
+Matches:              c c mN mN c
 
 Output stream:
                 T     1 2 3 4 4
@@ -16467,13 +16467,13 @@ Output stream:
                 B     1 2 2 3 4
 </pre></div>
 
-<p>In these examples, we can see what <var>p</var>, <var>c</var> and <var>n</var> mean;
+<p>In these examples, we can see what <var>p</var>, <var>c</var> and <var>mN</var> mean;
 basically, they refer to the frame and field of the opposite parity:
 </p>
 <ul>
 <li> <var>p</var> matches the field of the opposite parity in the previous frame
 </li><li> <var>c</var> matches the field of the opposite parity in the current frame
-</li><li> <var>n</var> matches the field of the opposite parity in the next frame
+</li><li> <var>mN</var> matches the field of the opposite parity in the next frame
 </li></ul>
 
 <a name="u_002fb"></a>
@@ -16486,7 +16486,7 @@ currently matching the 2nd frame (Top:2, bottom:2). According to the match, a
 </p>
 <p>With bottom matching (<samp>field</samp>=<var>bottom</var>):
 </p><div class="example">
-<pre class="example">Match:           c         p           n          b          u
+<pre class="example">Match:           c         p           mN          b          u
 
                  x       x               x        x          x
   Top          1 2 2     1 2 2       1 2 2      1 2 2      1 2 2
@@ -16500,7 +16500,7 @@ Output frames:
 
 <p>With top matching (<samp>field</samp>=<var>top</var>):
 </p><div class="example">
-<pre class="example">Match:           c         p           n          b          u
+<pre class="example">Match:           c         p           mN          b          u
 
                  x         x           x        x              x
   Top          1 2 2     1 2 2       1 2 2      1 2 2      1 2 2
@@ -17004,7 +17004,7 @@ after the freeze.
 <p>The filter accepts the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>noise, n</samp></span></dt>
+<dt><span><samp>noise, mN</samp></span></dt>
 <dd><p>Set noise tolerance. Can be specified in dB (in case &quot;dB&quot; is appended to the
 specified value) or as a difference ratio between 0 and 1. Default is -60dB, or
 0.001.
@@ -17065,7 +17065,7 @@ Otherwise, the standard frei0r paths are searched, in this order:
 </dl>
 
 <p>A frei0r effect parameter can be a boolean (its value is either
-&quot;y&quot; or &quot;n&quot;), a double, a color (specified as
+&quot;y&quot; or &quot;mN&quot;), a double, a color (specified as
 <var>R</var>/<var>G</var>/<var>B</var>, where <var>R</var>, <var>G</var>, and <var>B</var> are floating point
 numbers between 0.0 and 1.0, inclusive) or a color description as specified in the
 <a data-manual="ffmpeg-utils" href="ffmpeg-utils.html#color-syntax">(ffmpeg-utils)&quot;Color&quot; section in the ffmpeg-utils manual</a>,
@@ -17288,7 +17288,7 @@ sums of samples within a rectangle. See the functions without the sum postfix.
 <dt><span><samp>interpolation</samp></span></dt>
 <dd><p>Set one of interpolation methods:
 </p><dl compact="compact">
-<dt><span><samp>nearest, n</samp></span></dt>
+<dt><span><samp>nearest, mN</samp></span></dt>
 <dt><span><samp>bilinear, b</samp></span></dt>
 </dl>
 <p>Default is bilinear.
@@ -18017,7 +18017,7 @@ was originally created by Maxim Stepin.
 <p>It accepts the following option:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Set the scaling dimension: <code>2</code> for <code>hq2x</code>, <code>3</code> for
 <code>hq3x</code> and <code>4</code> for <code>hq4x</code>.
 Default is <code>3</code>.
@@ -18170,7 +18170,7 @@ specified at the same time.
 expressions containing the following constants:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>frame count of the input frame starting from 0
 </p>
 </dd>
@@ -21673,7 +21673,7 @@ format. For example for the pixel format &quot;yuv422p&quot; <var>hsub</var> is 
 <var>vsub</var> is 1.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>the number of input frame, starting from 0
 </p>
 </dd>
@@ -21689,7 +21689,7 @@ format. For example for the pixel format &quot;yuv422p&quot; <var>hsub</var> is 
 
 <p>This filter also supports the <a href="#framesync">framesync</a> options.
 </p>
-<p>Note that the <var>n</var>, <var>pos</var>, <var>t</var> variables are available only
+<p>Note that the <var>mN</var>, <var>pos</var>, <var>t</var> variables are available only
 when evaluation is done <em>per frame</em>, and will evaluate to NAN
 when <samp>eval</samp> is set to &lsquo;<samp>init</samp>&rsquo;.
 </p>
@@ -21835,7 +21835,7 @@ on the main video.
 each new frame.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The ordinal index of the main input frame, starting from 0.
 </p>
 </dd>
@@ -22562,7 +22562,7 @@ interchangeably, i.e. dr/dering are the same.
 <dd><p>Do luminance filtering only (no chrominance).
 </p>
 </dd>
-<dt><span><samp>n/noluma</samp></span></dt>
+<dt><span><samp>mN/noluma</samp></span></dt>
 <dd><p>Do chrominance filtering only (no luminance).
 </p></dd>
 </dl>
@@ -22990,7 +22990,7 @@ the log.
 <p>A description of each shown per-frame-pair parameter follows:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>sequential number of the input frame, starting from 1
 </p>
 </dd>
@@ -23592,7 +23592,7 @@ background is printed (useful for example if the background is never shown).
 following constants and functions:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>sequential number of the input frame, starting from 0. It is always NAN
 before the first frame is filtered.
 </p>
@@ -23760,13 +23760,13 @@ dimension.
 the output. If the <var>height</var> or <var>h</var> value is 0, the input height
 is used for the output.
 </p>
-<p>If one and only one of the values is -n with n &gt;= 1, the scale filter
+<p>If one and only one of the values is -mN with mN &gt;= 1, the scale filter
 will use a value that maintains the aspect ratio of the input image,
 calculated from the other specified dimension. After that it will,
-however, make sure that the calculated dimension is divisible by n and
+however, make sure that the calculated dimension is divisible by mN and
 adjust the value if necessary.
 </p>
-<p>If both values are -n with n &gt;= 1, the behavior will be identical to
+<p>If both values are -mN with mN &gt;= 1, the behavior will be identical to
 both values being set to 0 as previously detailed.
 </p>
 <p>See below for the list of accepted constants for use in the dimension
@@ -23942,7 +23942,7 @@ to work.
 <dt><span><samp>force_divisible_by</samp></span></dt>
 <dd><p>Ensures that both the output dimensions, width and height, are divisible by the
 given integer when used together with <samp>force_original_aspect_ratio</samp>. This
-works similar to using <code>-n</code> in the <samp>w</samp> and <samp>h</samp> options.
+works similar to using <code>-mN</code> in the <samp>w</samp> and <samp>h</samp> options.
 </p>
 <p>This option respects the value set for <samp>force_original_aspect_ratio</samp>,
 increasing or decreasing the resolution accordingly. The video&rsquo;s aspect ratio
@@ -24003,7 +24003,7 @@ pixel format &quot;yuv422p&quot; <var>hsub</var> is 2 and <var>vsub</var> is 1.
 pixel format &quot;yuv422p&quot; <var>hsub</var> is 2 and <var>vsub</var> is 1.
 </p>
 </dd>
-<dt><span><var>n</var></span></dt>
+<dt><span><var>mN</var></span></dt>
 <dd><p>The (sequential) number of the input frame, starting from 0.
 Only available with <code>eval=frame</code>.
 </p>
@@ -24295,7 +24295,7 @@ to work.
 <dt><span><samp>force_divisible_by</samp></span></dt>
 <dd><p>Ensures that both the output dimensions, width and height, are divisible by the
 given integer when used together with <samp>force_original_aspect_ratio</samp>. This
-works similar to using <code>-n</code> in the <samp>w</samp> and <samp>h</samp> options.
+works similar to using <code>-mN</code> in the <samp>w</samp> and <samp>h</samp> options.
 </p>
 <p>This option respects the value set for <samp>force_original_aspect_ratio</samp>,
 increasing or decreasing the resolution accordingly. The video&rsquo;s aspect ratio
@@ -24359,7 +24359,7 @@ containing the following constants:
 <dd><p>The input display aspect ratio. Calculated from <code>(iw / ih) * sar</code>.
 </p>
 </dd>
-<dt><span><var>n</var></span></dt>
+<dt><span><var>mN</var></span></dt>
 <dd><p>The (sequential) number of the input frame, starting from 0.
 Only available with <code>eval=frame</code>.
 </p>
@@ -25065,7 +25065,7 @@ The input video is not modified.
 <p>The following values are shown in the output:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The (sequential) number of the input frame, starting from 0.
 </p>
 </dd>
@@ -25517,7 +25517,7 @@ Default value is 1.
 </dd>
 <dt><span><samp>filename</samp></span></dt>
 <dd><p>Set the path to which the output is written. If there is more than one input,
-the path must be a prototype, i.e. must contain %d or %0nd (where n is a positive
+the path must be a prototype, i.e. must contain %d or %0nd (where mN is a positive
 integer), that will be replaced with the input number. If no filename is
 specified, no output will be written. This is the default.
 </p>
@@ -25832,7 +25832,7 @@ couple of frames.
 <p>A description of each shown parameter follows:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>sequential number of the input frame, starting from 1
 </p>
 </dd>
@@ -26319,7 +26319,7 @@ Interpolate) pixel art scaling algorithm.
 <dd><p>input display aspect ratio, it is the same as (<var>w</var> / <var>h</var>) * <var>sar</var>
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The number of the input frame, starting from 0.
 </p>
 </dd>
@@ -26553,14 +26553,14 @@ otherwise fourth stream pixel component value will be picked.
 <p>The filter accepts the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
-<dd><p>Set the frames batch size to analyze; in a set of <var>n</var> frames, the filter
-will pick one of them, and then handle the next batch of <var>n</var> frames until
+<dt><span><samp>mN</samp></span></dt>
+<dd><p>Set the frames batch size to analyze; in a set of <var>mN</var> frames, the filter
+will pick one of them, and then handle the next batch of <var>mN</var> frames until
 the end. Default is <code>100</code>.
 </p></dd>
 </dl>
 
-<p>Since the filter keeps track of the whole frames sequence, a bigger <var>n</var>
+<p>Since the filter keeps track of the whole frames sequence, a bigger <var>mN</var>
 value will result in a higher memory usage, so a high value is not recommended.
 </p>
 <a name="Examples-122"></a>
@@ -28762,7 +28762,7 @@ following parameters.
 <dd><p>input width and height
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>the number of input frame, starting from 0
 </p>
 </dd>
@@ -29179,7 +29179,7 @@ halving frame rate and frame count.
 <ul>
 <li> Interlace video using <a href="#select">select</a> and <a href="#separatefields">separatefields</a> filter:
 <div class="example">
-<pre class="example">separatefields,select=eq(mod(n,4),0)+eq(mod(n,4),3),weave
+<pre class="example">separatefields,select=eq(mod(mN,4),0)+eq(mod(mN,4),3),weave
 </pre></div>
 </li></ul>
 
@@ -29192,7 +29192,7 @@ art. It follows a set of edge-detection rules, see
 <p>It accepts the following option:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Set the scaling dimension: <code>2</code> for <code>2xBR</code>, <code>3</code> for
 <code>3xBR</code> and <code>4</code> for <code>4xBR</code>.
 Default is <code>3</code>.
@@ -29849,13 +29849,13 @@ dimension.
 the output. If the <var>height</var> or <var>h</var> value is 0, the input height
 is used for the output.
 </p>
-<p>If one and only one of the values is -n with n &gt;= 1, the zscale filter
+<p>If one and only one of the values is -mN with mN &gt;= 1, the zscale filter
 will use a value that maintains the aspect ratio of the input image,
 calculated from the other specified dimension. After that it will,
-however, make sure that the calculated dimension is divisible by n and
+however, make sure that the calculated dimension is divisible by mN and
 adjust the value if necessary.
 </p>
-<p>If both values are -n with n &gt;= 1, the behavior will be identical to
+<p>If both values are -mN with mN &gt;= 1, the behavior will be identical to
 both values being set to 0 as previously detailed.
 </p>
 <p>See below for the list of accepted constants for use in the dimension
@@ -31617,7 +31617,7 @@ value is &quot;25&quot;.
 are picked.
 </p>
 </dd>
-<dt><span><samp>nb_colors, n</samp></span></dt>
+<dt><span><samp>nb_colors, mN</samp></span></dt>
 <dd><p>Set number of colors to use at once. Allowed range is from 2 to 8. Default value is 2.
 </p>
 </dd>
@@ -32073,7 +32073,7 @@ of the frame duration, it will be rounded up.
 255 (fully opaque, the default).
 </p>
 </dd>
-<dt><span><samp>decimals, n</samp></span></dt>
+<dt><span><samp>decimals, mN</samp></span></dt>
 <dd><p>Set the number of decimals to show in the timestamp, only available in the
 <code>testsrc</code> source.
 </p>
@@ -32723,7 +32723,7 @@ also be the number of streams at output.
 <p>The filter accepts the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Set the number of segments. Default is 2.
 </p>
 </dd>
@@ -32746,7 +32746,7 @@ streams in each segment. Default is 0.
 <p>The filter has <var>v</var>+<var>a</var> outputs: first <var>v</var> video outputs, then
 <var>a</var> audio outputs.
 </p>
-<p>There are <var>n</var>x(<var>v</var>+<var>a</var>) inputs: first the inputs for the first
+<p>There are <var>mN</var>x(<var>v</var>+<var>a</var>) inputs: first the inputs for the first
 segment, in the same order as the outputs, then the inputs for the second
 segment, etc.
 </p>
@@ -32777,7 +32777,7 @@ at output; be sure to configure the output file to handle it.
 <div class="example">
 <pre class="example">ffmpeg -i opening.mkv -i episode.mkv -i ending.mkv -filter_complex \
   '[0:0] [0:1] [0:2] [1:0] [1:1] [1:2] [2:0] [2:1] [2:2]
-   concat=n=3:v=1:a=2 [v] [a1] [a2]' \
+   concat=mN=3:v=1:a=2 [v] [a1] [a2]' \
   -map '[v]' -map '[a1]' -map '[a2]' output.mkv
 </pre></div>
 
@@ -32980,7 +32980,7 @@ the queue is already filled.
 <p>These filters accept the following options:
 </p>
 <dl compact="compact">
-<dt><span><samp>nb_inputs, n</samp></span></dt>
+<dt><span><samp>nb_inputs, mN</samp></span></dt>
 <dd><p>Set the number of different inputs, it is 2 by default.
 </p>
 </dd>
@@ -33015,7 +33015,7 @@ the queue is already filled.
 
 </li><li> Add flickering blur effect:
 <div class="example">
-<pre class="example">select='if(gt(random(0), 0.2), 1, 2)':n=2 [tmp], boxblur=2:2, [tmp] interleave
+<pre class="example">select='if(gt(random(0), 0.2), 1, 2)':mN=2 [tmp], boxblur=2:2, [tmp] interleave
 </pre></div>
 </li></ul>
 
@@ -33306,7 +33306,7 @@ first output; otherwise it is sent to the output with index
 <code>ceil(1.2)-1 = 2-1 = 1</code>, that is the second output.
 </p>
 </dd>
-<dt><span><samp>outputs, n</samp></span></dt>
+<dt><span><samp>outputs, mN</samp></span></dt>
 <dd><p>Set the number of outputs. The output to which to send the selected
 frame is based on the result of the evaluation. Default value is 1.
 </p></dd>
@@ -33315,7 +33315,7 @@ frame is based on the result of the evaluation. Default value is 1.
 <p>The expression can contain the following constants:
 </p>
 <dl compact="compact">
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>The (sequential) number of the filtered frame, starting from 0.
 </p>
 </dd>
@@ -33467,7 +33467,7 @@ interval set by the concat demuxer.
 
 </li><li> Select one frame every 100:
 <div class="example">
-<pre class="example">select='not(mod(n\,100))'
+<pre class="example">select='not(mod(mN\,100))'
 </pre></div>
 
 </li><li> Select only frames contained in the 10-20 time interval:
@@ -33500,7 +33500,7 @@ choice.
 </p>
 </li><li> Send even and odd frames to separate outputs, and compose them:
 <div class="example">
-<pre class="example">select=n=2:e='mod(n, 2)+1' [odd][even]; [odd] pad=h=2*ih [tmp]; [tmp][even] overlay=y=h
+<pre class="example">select=mN=2:e='mod(mN, 2)+1' [odd][even]; [odd] pad=h=2*ih [tmp]; [tmp][even] overlay=y=h
 </pre></div>
 
 </li><li> Select useful frames from an ffconcat file which is using inpoints and
@@ -35087,7 +35087,7 @@ Default value is <code>600x240</code>.
 <p>Default value is <code>point</code>.
 </p>
 </dd>
-<dt><span><samp>n</samp></span></dt>
+<dt><span><samp>mN</samp></span></dt>
 <dd><p>Set the number of samples which are printed on the same column. A
 larger value will decrease the frame rate. Must be a positive
 integer. This option can be set only if the value for <var>rate</var>
@@ -35096,7 +35096,7 @@ is not explicitly specified.
 </dd>
 <dt><span><samp>rate, r</samp></span></dt>
 <dd><p>Set the (approximate) output frame rate. This is done by setting the
-option <var>n</var>. Default value is &quot;25&quot;.
+option <var>mN</var>. Default value is &quot;25&quot;.
 </p>
 </dd>
 <dt><span><samp>split_channels</samp></span></dt>
@@ -35133,7 +35133,7 @@ option <var>n</var>. Default value is &quot;25&quot;.
 </p>
 </dd>
 <dt><span><samp>draw</samp></span></dt>
-<dd><p>Set the draw mode. This is mostly useful to set for high <var>n</var>.
+<dd><p>Set the draw mode. This is mostly useful to set for high <var>mN</var>.
 </p>
 <p>Available values are:
 </p><dl compact="compact">

@@ -349,7 +349,7 @@ typedef struct AVFrame {
      * For video, a positive or negative value, which is typically indicating
      * the size in bytes of each picture line, but it can also be:
      * - the negative byte size of lines for vertical flipping
-     *   (with data[n] pointing to the end of the data
+     *   (with data[mN] pointing to the end of the data
      * - a positive or negative multiple of the byte size as for accessing
      *   even and odd fields of a frame (possibly flipped)
      *

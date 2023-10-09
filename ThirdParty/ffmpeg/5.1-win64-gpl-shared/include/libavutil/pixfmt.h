@@ -557,8 +557,8 @@ enum AVColorSpace {
  *     'E' is the original value in range of 0.0 to 1.0.
  *   - For chroma planes such as Cb,Cr and Ct,Cp, 'E' is the original
  *     value in range of -0.5 to 0.5.
- *   - 'n' is the output bit depth.
- *   - For additional definitions such as rounding and clipping to valid n
+ *   - 'mN' is the output bit depth.
+ *   - For additional definitions such as rounding and clipping to valid mN
  *     bit unsigned integer range, please refer to BT.2100 (Table 9).
  */
 enum AVColorRange {
@@ -569,13 +569,13 @@ enum AVColorRange {
      *
      * - For luma planes:
      *
-     *       (219 * E + 16) * 2^(n-8)
+     *       (219 * E + 16) * 2^(mN-8)
      *
      *   F.ex. the range of 16-235 for 8 bits
      *
      * - For chroma planes:
      *
-     *       (224 * E + 128) * 2^(n-8)
+     *       (224 * E + 128) * 2^(mN-8)
      *
      *   F.ex. the range of 16-240 for 8 bits
      */
@@ -586,13 +586,13 @@ enum AVColorRange {
      *
      * - For RGB and luma planes:
      *
-     *       (2^n - 1) * E
+     *       (2^mN - 1) * E
      *
      *   F.ex. the range of 0-255 for 8 bits
      *
      * - For chroma planes:
      *
-     *       (2^n - 1) * E + 2^(n - 1)
+     *       (2^mN - 1) * E + 2^(mN - 1)
      *
      *   F.ex. the range of 1-255 for 8 bits
      */

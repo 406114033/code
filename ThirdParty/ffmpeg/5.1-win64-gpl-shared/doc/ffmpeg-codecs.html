@@ -1415,11 +1415,11 @@ Possible values:
 </p><dl compact="compact">
 <dt><span>&lsquo;<samp>tv</samp>&rsquo;</span></dt>
 <dt><span>&lsquo;<samp>mpeg</samp>&rsquo;</span></dt>
-<dd><p>MPEG (219*2^(n-8))
+<dd><p>MPEG (219*2^(mN-8))
 </p></dd>
 <dt><span>&lsquo;<samp>pc</samp>&rsquo;</span></dt>
 <dt><span>&lsquo;<samp>jpeg</samp>&rsquo;</span></dt>
-<dd><p>JPEG (2^n-1)
+<dd><p>JPEG (2^mN-1)
 </p></dd>
 </dl>
 
@@ -3223,7 +3223,7 @@ The default is 20ms.
 <dd><p>Set expected packet loss percentage. The default is 0.
 </p>
 </dd>
-<dt><span><samp>fec (<em>n/a</em>)</samp></span></dt>
+<dt><span><samp>fec (<em>mN/a</em>)</samp></span></dt>
 <dd><p>Enable inband forward error correction. <samp>packet_loss</samp> must be non-zero
 to take advantage - frequency of FEC &rsquo;side-data&rsquo; is proportional to expected packet loss.
 Default is disabled.

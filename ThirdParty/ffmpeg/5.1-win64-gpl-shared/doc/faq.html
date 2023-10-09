@@ -334,7 +334,7 @@ that match <code>*jpg</code> to the <samp>/tmp</samp> directory in the sequence 
 <h3 class="section">3.4 Why do I see a slight quality degradation with multithreaded MPEG* encoding?<span class="pull-right"><a class="anchor hidden-xs" href="#Why-do-I-see-a-slight-quality-degradation-with-multithreaded-MPEG_002a-encoding_003f" aria-hidden="true">#</a> <a class="anchor hidden-xs"href="#toc-Why-do-I-see-a-slight-quality-degradation-with-multithreaded-MPEG_002a-encoding_003f" aria-hidden="true">TOC</a></span></h3>
 
 <p>For multithreaded MPEG* encoding, the encoded slices must be independent,
-otherwise thread n would practically have to wait for n-1 to finish, so it&rsquo;s
+otherwise thread mN would practically have to wait for mN-1 to finish, so it&rsquo;s
 quite logical that there is a small reduction of quality. This is not a bug.
 </p>
 <a name="How-can-I-read-from-the-standard-input-or-write-to-the-standard-output_003f"></a>
@@ -520,7 +520,7 @@ mkfifo all.v
 ffmpeg -i input1.flv -vn -f u16le -c:a pcm_s16le -ac 2 -ar 44100 - &gt; temp1.a &lt; /dev/null &amp;
 ffmpeg -i input2.flv -vn -f u16le -c:a pcm_s16le -ac 2 -ar 44100 - &gt; temp2.a &lt; /dev/null &amp;
 ffmpeg -i input1.flv -an -f yuv4mpegpipe - &gt; temp1.v &lt; /dev/null &amp;
-{ ffmpeg -i input2.flv -an -f yuv4mpegpipe - &lt; /dev/null | tail -n +2 &gt; temp2.v ; } &amp;
+{ ffmpeg -i input2.flv -an -f yuv4mpegpipe - &lt; /dev/null | tail -mN +2 &gt; temp2.v ; } &amp;
 cat temp1.a temp2.a &gt; all.a &amp;
 cat temp1.v temp2.v &gt; all.v &amp;
 ffmpeg -f u16le -c:a pcm_s16le -ac 2 -ar 44100 -i all.a \

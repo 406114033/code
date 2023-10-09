@@ -788,7 +788,7 @@ i.e. <code>dropamount=4</code> is the same as <code>drop=-4</code>. Ignored if d
 <p>Both <code>amount</code> and <code>drop</code> accept expressions containing the following variables:
 </p>
 <dl compact="compact">
-<dt><span>&lsquo;<samp>n</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>mN</samp>&rsquo;</span></dt>
 <dd><p>The index of the packet, starting from zero.
 </p></dd>
 <dt><span>&lsquo;<samp>tb</samp>&rsquo;</span></dt>
@@ -857,7 +857,7 @@ rate per second. This is similar to the <a data-manual="ffmpeg-filters" href="ff
 filter</a> but works on audio packets instead of audio frames.
 </p>
 <dl compact="compact">
-<dt><span><samp>nb_out_samples, n</samp></span></dt>
+<dt><span><samp>nb_out_samples, mN</samp></span></dt>
 <dd><p>Set the number of samples per each output audio packet. The number is intended
 as the number of samples <em>per each channel</em>. Default value is 1024.
 </p>

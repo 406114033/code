@@ -13,10 +13,11 @@ using namespace std;
 #include "dbg.h"
 #include "QApplication"
 #include "MainWindow.hpp"
+#include "MultiThreadSyn.hpp"
 
 static void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt, const char *tag) {
     AVRational *time_base = &fmt_ctx->streams[pkt->stream_index]->time_base;
-//        printf("%s: pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
+//        printf("%s: pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\mN",
 //               tag,
 //               av_ts2str(pkt->pts), av_ts2timestr(pkt->pts, time_base),
 //               av_ts2str(pkt->dts), av_ts2timestr(pkt->dts, time_base),
@@ -32,15 +33,15 @@ void swap(vector<int> &nums, int i, int j) {
 
 void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 // -------------------一1111-----------------
-//    for (int i = 0; i != n; ++i) {
+//    for (int i = 0; i != mN; ++i) {
 //        nums1[m + i] = nums2[i];
 //    }
 //    sort(nums1.begin(), nums1.end(),greater<int>()); //从大到小
 //    sort(nums1.begin(), nums1.end());  //从小到大
 
 // ------------------2222------------------
-//    int max = m + n -1;
-//    for (int i = 0; i < n; ++i) {
+//    int max = m + mN -1;
+//    for (int i = 0; i < mN; ++i) {
 //        nums1[m+i] =  nums2[i];
 //    }
 //    for (int i = 0; i < max; ++i) {
@@ -56,8 +57,8 @@ void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 // -----------------33333----------------------
 //    int i = 0,j = 0;
 //    vector<int> result;
-//    if(n == 0) return;
-//    while(i < m && j < n){
+//    if(mN == 0) return;
+//    while(i < m && j < mN){
 //        if(nums1.at(i) > nums2.at(j)){
 //            result.push_back(nums2.at(j));
 //            j++;
@@ -69,10 +70,10 @@ void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 //    while(i < m){
 //        result.push_back(nums1.at(i++));
 //    }
-//    while(j < n){
+//    while(j < mN){
 //        result.push_back(nums2.at(j++));
 //    }
-//    for (int k = 0; k < m+n; ++k) {
+//    for (int k = 0; k < m+mN; ++k) {
 //        nums1[k] = result[k];
 //    }
 
@@ -472,13 +473,17 @@ void quickSort1(vector<int> &arr, int low, int high) {
         quickSort1(arr, privot + 1, high);
     }
 }
+class Car;
 
 class Person {
 public:
-    Person() noexcept {
-        qDebug() << "Person+++++++";
-        mNum += n;
-        n++;
+    Person(){
+        qDebug() << " persong========";
+    }
+    Person(int a) noexcept : mNum(a) {
+        qDebug() << "Person+++++++ mN = " << mNum;
+//        mNum += mN;
+//        mN++;
     }
 
     ~Person() {
@@ -486,11 +491,22 @@ public:
     }
 
     void add() {
-        qDebug() << "add";
+        qDebug() << "add-------" << mNum;
     }
+    weak_ptr<Car> mCar;
+    int mN = 1;
+    int mNum = 0;
+};
 
-    int n = 1;
-    int mNum;
+class Car{
+public:
+    Car(){
+        qDebug() << "car";
+    }
+    ~Car(){
+        qDebug() << "~car";
+    }
+    shared_ptr<Person> mPerson;
 };
 
 
@@ -617,21 +633,142 @@ private:
     T *mObj;
 };
 
+void test01(){
+    Person *ptr0 = new Person();
+    shared_ptr<Person> ptr4(ptr0);
+    shared_ptr<Person> ptr5(ptr0);
+    cout << ptr4.use_count() << ptr5.use_count();
+    return;
+    {
+        shared_ptr<Person> ptr1(new Person[5]{1, 2, 3, 4, 5}, [](Person *p) {
+                                    delete[] p;
+                                }
+        );
+    }
+    Person* p(new Person[10]{1});
+    for (int i = 0; i < 10; ++i) {
+//        p[i] = Person(i);
+        qDebug() << "p[i] "<< &p[i];
+    }
+    for (int i = 0; i < 10; ++i) {
+        p[i].add();
+    }
+    delete[] p;
+    qDebug() << "2" << endl;
+    {
+        shared_ptr<Person> p4;
+        {
+            shared_ptr<Person> p1(new Person(10));
+            qDebug() << p1.use_count();
+            shared_ptr<Person> p2 = p1;
+            qDebug() << p1.use_count();
+            shared_ptr<Person> p3 = p2;
+            qDebug() << p1.use_count();
+            p4 = p3;
+            qDebug() << p1.use_count();
+        }
+        qDebug() << p4.use_count();
+    }
+    Person *b = new Person();
+    {
+        shared_ptr<Person> p0(b);
+        qDebug() << p0.use_count();
+    }
+    {
+        shared_ptr<Person> p67(b);
+    }
+}
 
-int main(int argc, char **argv) {
-
+void test02(){
     cout << "1" << endl;
     {
         SmartPointer<Person> p(new Person());
         p.get()->add();
-        p->add();
+        p->add();  //重写->操作符返回Person对象
     }
     cout << "2" << endl;
+}
+
+//------------循环引用弱指针解决内存泄漏问题---------
+void test03(){
+    shared_ptr<Person> person(new Person());
+    shared_ptr<Car> car(new Car());
+    person->mCar = car;
+    car->mPerson = person;
+}
+
+//-------shared_ptr创建weak_ptr
+void SharedToWeakPtr(){
+    std::shared_ptr<int> shared = std::make_shared<int>(42);
+
+    // 从 shared_ptr 创建 weak_ptr
+    std::weak_ptr<int> weak = shared;
+
+    // 检查 weak_ptr 是否有效
+    if (weak.expired()) {
+        std::cout << "weak_ptr is expired." << std::endl;
+    } else {
+        std::cout << "weak_ptr is not expired." << std::endl;
+    }
+
+    // 使用 weak_ptr 时需要将其转换为 shared_ptr
+    if (auto shared_from_weak = weak.lock()) {
+        std::cout << "Value from weak_ptr: " << *shared_from_weak << " count "<< shared_from_weak.use_count() <<std::endl;
+    } else {
+        std::cout << "weak_ptr is expired; cannot access value." << std::endl;
+    }
+
+    // 释放 shared_ptr，此时 weak_ptr 也会变为无效
+    shared.reset();
+
+    // 再次检查 weak_ptr 是否有效
+    if (weak.expired()) {
+        std::cout << "weak_ptr is expired." << std::endl;
+    } else {
+        std::cout << "weak_ptr is not expired." << std::endl;
+    }
+}
+
+//------unique_ptr-----
+void TestUniquePtr(){
+    std::unique_ptr<int> ptr = std::make_unique<int>(10);
+    std::unique_ptr<int> ptr2(ptr.release());
+}
+
+//
+unique_ptr<int> clone(int p)
+{
+    unique_ptr<int> ret(new int (p));
+    return ret;
+}
+
+
+int main(int argc, char **argv) {
+//    test01();
+//    auto ptr = clone(10);
+//    qDebug() << " ptr = " << *ptr;
+    SharedToWeakPtr();
+
+//    test03();
 
     return 0;
 }
 #endif
 
+
+int main(int argc, char **argv) {
+//    TaiShan::initLogger("d:/","newTestDemo");
+    MultiThreadSyn threadSyn;
+
+//    threadSyn.readWriteLock();
+//    threadSyn.SemaphoreSyn();
+//    threadSyn.conditionSyn();
+    threadSyn.mutexSyn();
+    return 0;
+}
+
+
+#if 0
 int main(int argc, char **argv) {
     QApplication a(argc, argv);
     MainWindow w;
@@ -695,10 +832,10 @@ int main(int argc, char **argv) {
     AVFrame *frame = NULL;
 
 //    if (argc < 3) {
-//        printf("usage: %s input output\n"
-//               "API example program to remux a media file with libavformat and libavcodec.\n"
-//               "The output format is guessed according to the file extension.\n"
-//               "\n", argv[0]);
+//        printf("usage: %s input output\mN"
+//               "API example program to remux a media file with libavformat and libavcodec.\mN"
+//               "The output format is guessed according to the file extension.\mN"
+//               "\mN", argv[0]);
 //        return 1;
 //    }
 
@@ -708,7 +845,7 @@ int main(int argc, char **argv) {
     pkt = av_packet_alloc();
     newPkt = av_packet_alloc();
     if (!pkt) {
-        fprintf(stderr, "Could not allocate AVPacket\n");
+        fprintf(stderr, "Could not allocate AVPacket\mN");
         return 1;
     }
 //demuxer
@@ -728,7 +865,7 @@ int main(int argc, char **argv) {
 //muxer
     avformat_alloc_output_context2(&ofmt_ctx, NULL, NULL, out_filename);
     if (!ofmt_ctx) {
-        fprintf(stderr, "Could not create output context\n");
+        fprintf(stderr, "Could not create output context\mN");
         ret = AVERROR_UNKNOWN;
         goto end;
     }
@@ -803,7 +940,7 @@ int main(int argc, char **argv) {
 
     out_stream = avformat_new_stream(ofmt_ctx, NULL);
     if (!out_stream) {
-        fprintf(stderr, "Failed allocating output stream\n");
+        fprintf(stderr, "Failed allocating output stream\mN");
         ret = AVERROR_UNKNOWN;
         goto end;
     }
@@ -811,7 +948,7 @@ int main(int argc, char **argv) {
     out_stream->id = ofmt_ctx->nb_streams - 1;
     ret = avcodec_parameters_from_context(out_stream->codecpar, encodeCodecCtx);
     if (ret < 0) {
-        fprintf(stderr, "Failed to copy codec parameters\n");
+        fprintf(stderr, "Failed to copy codec parameters\mN");
         goto end;
     }
 //out_stream->time_base = encodeCodecCtx->time_base;
@@ -836,7 +973,7 @@ int main(int argc, char **argv) {
 
     ret = avformat_write_header(ofmt_ctx, NULL);
     if (ret < 0) {
-        fprintf(stderr, "Error occurred when opening output file\n");
+        fprintf(stderr, "Error occurred when opening output file\mN");
         goto end;
     }
 
@@ -872,7 +1009,7 @@ int main(int argc, char **argv) {
          * its contents and resets pkt), so that no unreferencing is necessary.
          * This would be different if one used av_write_frame(). */
         if (ret < 0) {
-            fprintf(stderr, "Error muxing packet\n");
+            fprintf(stderr, "Error muxing packet\mN");
             continue;
         }
     }
@@ -893,10 +1030,12 @@ int main(int argc, char **argv) {
     av_freep(&stream_mapping);
 
     if (ret < 0 && ret != AVERROR_EOF) {
-        //        fprintf(stderr, "Error occurred: %s\n", av_err2str(ret));
+        //        fprintf(stderr, "Error occurred: %s\mN", av_err2str(ret));
         return 1;
     }
 #endif
 
     return 0;
 }
+
+#endif

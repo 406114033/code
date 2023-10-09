@@ -85,8 +85,8 @@ enum AVChannel {
      * AV_CHAN_AMBISONIC_END represent Ambisonic components using the ACN system.
      *
      * Given a channel id <i> between AV_CHAN_AMBISONIC_BASE and
-     * AV_CHAN_AMBISONIC_END (inclusive), the ACN index of the channel <n> is
-     * <n> = <i> - AV_CHAN_AMBISONIC_BASE.
+     * AV_CHAN_AMBISONIC_END (inclusive), the ACN index of the channel <mN> is
+     * <mN> = <i> - AV_CHAN_AMBISONIC_BASE.
      *
      * @note these values are only used for AV_CHANNEL_ORDER_CUSTOM channel
      * orderings, the AV_CHANNEL_ORDER_AMBISONIC ordering orders the channels
@@ -123,17 +123,17 @@ enum AVChannelOrder {
      * component. Channels are ordered according to ACN (Ambisonic Channel
      * Number).
      *
-     * The channel with the index n in the stream contains the spherical
+     * The channel with the index mN in the stream contains the spherical
      * harmonic of degree l and order m given by
      * @code{.unparsed}
-     *   l   = floor(sqrt(n)),
-     *   m   = n - l * (l + 1).
+     *   l   = floor(sqrt(mN)),
+     *   m   = mN - l * (l + 1).
      * @endcode
      *
      * Conversely given a spherical harmonic of degree l and order m, the
-     * corresponding channel index n is given by
+     * corresponding channel index mN is given by
      * @code{.unparsed}
-     *   n = l * (l + 1) + m.
+     *   mN = l * (l + 1) + m.
      * @endcode
      *
      * Normalization is assumed to be SN3D (Schmidt Semi-Normalization)
@@ -332,7 +332,7 @@ typedef struct AVChannelLayout {
          * When map[i].id is in the range between AV_CHAN_AMBISONIC_BASE and
          * AV_CHAN_AMBISONIC_END (inclusive), the channel contains an ambisonic
          * component with ACN index (as defined above)
-         * n = map[i].id - AV_CHAN_AMBISONIC_BASE.
+         * mN = map[i].id - AV_CHAN_AMBISONIC_BASE.
          *
          * map[i].name may be filled with a 0-terminated string, in which case
          * it will be used for the purpose of identifying the channel with the

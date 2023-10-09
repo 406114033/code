@@ -927,11 +927,11 @@ and <code>port + 4</code> for the row FEC stream.
 </p>
 <p>This protocol accepts the following options:
 </p><dl compact="compact">
-<dt><span><samp>l=<var>n</var></samp></span></dt>
+<dt><span><samp>l=<var>mN</var></samp></span></dt>
 <dd><p>The number of columns (4-20, LxD &lt;= 100)
 </p>
 </dd>
-<dt><span><samp>d=<var>n</var></samp></span></dt>
+<dt><span><samp>d=<var>mN</var></samp></span></dt>
 <dd><p>The number of rows (4-20, LxD &lt;= 100)
 </p>
 </dd>
@@ -1324,24 +1324,24 @@ rtp://<var>hostname</var>[:<var>port</var>][?<var>option</var>=<var>val</var>...
 <p>The following URL options are supported:
 </p>
 <dl compact="compact">
-<dt><span><samp>ttl=<var>n</var></samp></span></dt>
+<dt><span><samp>ttl=<var>mN</var></samp></span></dt>
 <dd><p>Set the TTL (Time-To-Live) value (for multicast only).
 </p>
 </dd>
-<dt><span><samp>rtcpport=<var>n</var></samp></span></dt>
-<dd><p>Set the remote RTCP port to <var>n</var>.
+<dt><span><samp>rtcpport=<var>mN</var></samp></span></dt>
+<dd><p>Set the remote RTCP port to <var>mN</var>.
 </p>
 </dd>
-<dt><span><samp>localrtpport=<var>n</var></samp></span></dt>
-<dd><p>Set the local RTP port to <var>n</var>.
+<dt><span><samp>localrtpport=<var>mN</var></samp></span></dt>
+<dd><p>Set the local RTP port to <var>mN</var>.
 </p>
 </dd>
-<dt><span><samp>localrtcpport=<var>n</var>'</samp></span></dt>
-<dd><p>Set the local RTCP port to <var>n</var>.
+<dt><span><samp>localrtcpport=<var>mN</var>'</samp></span></dt>
+<dd><p>Set the local RTCP port to <var>mN</var>.
 </p>
 </dd>
-<dt><span><samp>pkt_size=<var>n</var></samp></span></dt>
-<dd><p>Set max packet size (in bytes) to <var>n</var>.
+<dt><span><samp>pkt_size=<var>mN</var></samp></span></dt>
+<dd><p>Set max packet size (in bytes) to <var>mN</var>.
 </p>
 </dd>
 <dt><span><samp>buffer_size=<var>size</var></samp></span></dt>
@@ -1366,8 +1366,8 @@ to 0).
 set to 1) or to a default remote address (if set to 0).
 </p>
 </dd>
-<dt><span><samp>localport=<var>n</var></samp></span></dt>
-<dd><p>Set the local RTP port to <var>n</var>.
+<dt><span><samp>localport=<var>mN</var></samp></span></dt>
+<dd><p>Set the local RTP port to <var>mN</var>.
 </p>
 </dd>
 <dt><span><samp>localaddr=<var>addr</var></samp></span></dt>
@@ -1375,8 +1375,8 @@ set to 1) or to a default remote address (if set to 0).
 multicast groups.
 </p>
 </dd>
-<dt><span><samp>timeout=<var>n</var></samp></span></dt>
-<dd><p>Set timeout (in microseconds) of socket I/O operations to <var>n</var>.
+<dt><span><samp>timeout=<var>mN</var></samp></span></dt>
+<dd><p>Set timeout (in microseconds) of socket I/O operations to <var>mN</var>.
 </p>
 <p>This is a deprecated option. Instead, <samp>localrtpport</samp> should be
 used.
@@ -1523,8 +1523,8 @@ can be disabled by setting the maximum demuxing delay to zero (via
 the <code>max_delay</code> field of AVFormatContext).
 </p>
 <p>When watching multi-bitrate Real-RTSP streams with <code>ffplay</code>, the
-streams to display can be chosen with <code>-vst</code> <var>n</var> and
-<code>-ast</code> <var>n</var> for video and audio respectively, and can be switched
+streams to display can be chosen with <code>-vst</code> <var>mN</var> and
+<code>-ast</code> <var>mN</var> for video and audio respectively, and can be switched
 on the fly by pressing <code>v</code> and <code>a</code>.
 </p>
 <a name="Examples"></a>

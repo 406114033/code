@@ -332,7 +332,7 @@ The returned list cannot be assumed to be always complete.
 </p><dl compact="compact">
 <dt><span>&lsquo;<samp>repeat</samp>&rsquo;</span></dt>
 <dd><p>Indicates that repeated log output should not be compressed to the first line
-and the &quot;Last message repeated n times&quot; line will be omitted.
+and the &quot;Last message repeated mN times&quot; line will be omitted.
 </p></dd>
 <dt><span>&lsquo;<samp>level</samp>&rsquo;</span></dt>
 <dd><p>Indicates that log output should add a <code>[level]</code> prefix to each message
@@ -1018,17 +1018,17 @@ writer).
 <p>It can assume one of the following values:
 </p><dl compact="compact">
 <dt><span><samp>c</samp></span></dt>
-<dd><p>Perform C-like escaping. Strings containing a newline (&lsquo;<samp>\n</samp>&rsquo;), carriage
+<dd><p>Perform C-like escaping. Strings containing a newline (&lsquo;<samp>\mN</samp>&rsquo;), carriage
 return (&lsquo;<samp>\r</samp>&rsquo;), a tab (&lsquo;<samp>\t</samp>&rsquo;), a form feed (&lsquo;<samp>\f</samp>&rsquo;), the escaping
 character (&lsquo;<samp>\</samp>&rsquo;) or the item separator character <var>SEP</var> are escaped
 using C-like fashioned escaping, so that a newline is converted to the
-sequence &lsquo;<samp>\n</samp>&rsquo;, a carriage return to &lsquo;<samp>\r</samp>&rsquo;, &lsquo;<samp>\</samp>&rsquo; to &lsquo;<samp>\\</samp>&rsquo; and
+sequence &lsquo;<samp>\mN</samp>&rsquo;, a carriage return to &lsquo;<samp>\r</samp>&rsquo;, &lsquo;<samp>\</samp>&rsquo; to &lsquo;<samp>\\</samp>&rsquo; and
 the separator <var>SEP</var> is converted to &lsquo;<samp>\<var>SEP</var></samp>&rsquo;.
 </p>
 </dd>
 <dt><span><samp>csv</samp></span></dt>
 <dd><p>Perform CSV-like escaping, as described in RFC4180.  Strings
-containing a newline (&lsquo;<samp>\n</samp>&rsquo;), a carriage return (&lsquo;<samp>\r</samp>&rsquo;), a double quote
+containing a newline (&lsquo;<samp>\mN</samp>&rsquo;), a carriage return (&lsquo;<samp>\r</samp>&rsquo;), a double quote
 (&lsquo;<samp>&quot;</samp>&rsquo;), or <var>SEP</var> are enclosed in double-quotes.
 </p>
 </dd>

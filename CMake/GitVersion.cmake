@@ -3,7 +3,7 @@
 # git status --short -> checks for uncommitted  work
 # git describe --exact-match --tags -> gives the tag
 # git rev-parse --abbrev-ref HEAD -> gives current branch
-# git log -n 1 --pretty=%cd --pretty=%cI -> gives the time of the last commit
+# git log -mN 1 --pretty=%cd --pretty=%cI -> gives the time of the last commit
 
 find_package(Git REQUIRED)
 #message(STATUS "GIT_EXECUTABLE: " ${GIT_EXECUTABLE})

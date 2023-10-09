@@ -60,7 +60,7 @@
  */
 
 /**
- * @def DECLARE_ALIGNED(n,t,v)
+ * @def DECLARE_ALIGNED(mN,t,v)
  * Declare a variable that is aligned in memory.
  *
  * @code{.c}
@@ -78,7 +78,7 @@
  */
 
 /**
- * @def DECLARE_ASM_ALIGNED(n,t,v)
+ * @def DECLARE_ASM_ALIGNED(mN,t,v)
  * Declare an aligned variable appropriate for use in inline assembly code.
  *
  * @code{.c}
@@ -91,7 +91,7 @@
  */
 
 /**
- * @def DECLARE_ASM_CONST(n,t,v)
+ * @def DECLARE_ASM_CONST(mN,t,v)
  * Declare a static constant aligned variable appropriate for use in inline
  * assembly code.
  *
@@ -105,25 +105,25 @@
  */
 
 #if defined(__INTEL_COMPILER) && __INTEL_COMPILER < 1110 || defined(__SUNPRO_C)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_CONST(n,t,v)    const t __attribute__ ((aligned (n))) v
+    #define DECLARE_ALIGNED(mN,t,v)      t __attribute__ ((aligned (mN))) v
+    #define DECLARE_ASM_ALIGNED(mN,t,v)  t __attribute__ ((aligned (mN))) v
+    #define DECLARE_ASM_CONST(mN,t,v)    const t __attribute__ ((aligned (mN))) v
 #elif defined(__DJGPP__)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (FFMIN(n, 16)))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t av_used __attribute__ ((aligned (FFMIN(n, 16)))) v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t av_used __attribute__ ((aligned (FFMIN(n, 16)))) v
+    #define DECLARE_ALIGNED(mN,t,v)      t __attribute__ ((aligned (FFMIN(mN, 16)))) v
+    #define DECLARE_ASM_ALIGNED(mN,t,v)  t av_used __attribute__ ((aligned (FFMIN(mN, 16)))) v
+    #define DECLARE_ASM_CONST(mN,t,v)    static const t av_used __attribute__ ((aligned (FFMIN(mN, 16)))) v
 #elif defined(__GNUC__) || defined(__clang__)
-    #define DECLARE_ALIGNED(n,t,v)      t __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t av_used __attribute__ ((aligned (n))) v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t av_used __attribute__ ((aligned (n))) v
+    #define DECLARE_ALIGNED(mN,t,v)      t __attribute__ ((aligned (mN))) v
+    #define DECLARE_ASM_ALIGNED(mN,t,v)  t av_used __attribute__ ((aligned (mN))) v
+    #define DECLARE_ASM_CONST(mN,t,v)    static const t av_used __attribute__ ((aligned (mN))) v
 #elif defined(_MSC_VER)
     #define DECLARE_ALIGNED(n,t,v)      __declspec(align(n)) t v
     #define DECLARE_ASM_ALIGNED(n,t,v)  __declspec(align(n)) t v
     #define DECLARE_ASM_CONST(n,t,v)    __declspec(align(n)) static const t v
 #else
-    #define DECLARE_ALIGNED(n,t,v)      t v
-    #define DECLARE_ASM_ALIGNED(n,t,v)  t v
-    #define DECLARE_ASM_CONST(n,t,v)    static const t v
+    #define DECLARE_ALIGNED(mN,t,v)      t v
+    #define DECLARE_ASM_ALIGNED(mN,t,v)  t v
+    #define DECLARE_ASM_CONST(mN,t,v)    static const t v
 #endif
 
 /**

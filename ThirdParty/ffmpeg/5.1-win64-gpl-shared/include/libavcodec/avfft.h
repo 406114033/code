@@ -54,7 +54,7 @@ void av_fft_permute(FFTContext *s, FFTComplex *z);
 
 /**
  * Do a complex FFT with the parameters defined in av_fft_init(). The
- * input data must be permuted before. No 1.0/sqrt(n) normalization is done.
+ * input data must be permuted before. No 1.0/sqrt(mN) normalization is done.
  */
 void av_fft_calc(FFTContext *s, FFTComplex *z);
 

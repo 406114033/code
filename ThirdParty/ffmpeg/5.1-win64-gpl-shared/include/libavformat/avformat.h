@@ -2725,7 +2725,7 @@ void av_dump_format(AVFormatContext *ic,
 /**
  * Return in 'buf' the path with '%d' replaced by a number.
  *
- * Also handles the '%0nd' format where 'n' is the total number
+ * Also handles the '%0nd' format where 'mN' is the total number
  * of digits and '%%'.
  *
  * @param buf destination buffer
