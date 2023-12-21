@@ -8,4 +8,5 @@ include(CMake/GitVersion.cmake)
 
 add_subdirectory(TestPro)
 add_subdirectory(MemoryUsed)
+add_subdirectory(DesignPatterns)
 add_subdirectory(ThirdParty)

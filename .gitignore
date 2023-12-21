@@ -69,8 +69,9 @@ Thumbs.db
 # Binaries
 # --------
 #*.exe
-*build*
+#*build*
 cmake-build-debug
+cmake-build-release
 #.idea
 Output/
 GitVersion.hpp
